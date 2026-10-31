@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080b25">
+<title>El universo de Jess ✨</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;min-height:100vh;overflow-x:hidden;background:radial-gradient(ellipse at 50% 45%,#25215b 0%,#101638 42%,#050817 100%);color:#fff;font-family:Georgia,serif}
+  #stars{position:fixed;inset:0;width:100%;height:100%;z-index:0}
+  .nebula{position:fixed;width:65vw;height:65vw;max-width:700px;max-height:700px;left:50%;top:48%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(177,93,210,.18),rgba(81,94,190,.08) 40%,transparent 70%);filter:blur(12px);pointer-events:none}
+  main{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:42px 20px}
+  .eyebrow{font:12px Arial,sans-serif;letter-spacing:4px;text-transform:uppercase;color:#c8c8f7}
+  h1{font-size:clamp(42px,9vw,78px);font-weight:normal;margin:16px 0 8px;text-shadow:0 0 25px #b68cff}
+  .intro{font-size:clamp(17px,3.5vw,21px);line-height:1.7;max-width:620px;color:#e4e2ff;margin:12px auto 26px}
+  .hint{font:13px Arial,sans-serif;color:#c7c5ed;letter-spacing:1px;margin:10px 0 24px}
+  .orbit{position:relative;width:min(78vw,340px);height:min(78vw,340px);margin:5px auto 22px;border:1px solid rgba(213,196,255,.18);border-radius:50%;box-shadow:0 0 65px rgba(153,110,255,.12),inset 0 0 45px rgba(153,110,255,.08)}
+  .planet{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:90px;height:90px;border-radius:50%;background:radial-gradient(circle at 32% 28%,#ffe5ff,#c28bff 25%,#7355bd 58%,#26245f 80%);box-shadow:0 0 45px #b58cff,0 0 100px rgba(176,125,255,.45)}
+  .planet:after{content:"";position:absolute;width:135px;height:28px;border:2px solid rgba(238,218,255,.65);border-radius:50%;left:-24px;top:31px;transform:rotate(-18deg);box-shadow:0 0 12px #d6b4ff}
+  .star{position:absolute;border:0;background:transparent;color:#fff;font-size:27px;cursor:pointer;text-shadow:0 0 12px #fff,0 0 25px #c49aff;transition:transform .2s}
+  .star:hover{transform:scale(1.45)}
+  .s1{left:15%;top:24%}.s2{right:13%;top:18%}.s3{right:12%;bottom:22%}.s4{left:18%;bottom:17%}.s5{left:48%;top:5%}
+  button.open{border:1px solid rgba(232,213,255,.65);border-radius:999px;padding:14px 25px;background:rgba(174,132,255,.17);color:#fff;font:14px Arial,sans-serif;letter-spacing:1px;cursor:pointer;box-shadow:0 0 25px rgba(181,140,255,.18)}
+  button.open:hover{background:rgba(174,132,255,.3)}
+  .footer{font:12px Arial,sans-serif;color:#aaa9d5;margin-top:32px}
+  .modal{display:none;position:fixed;z-index:5;inset:0;background:rgba(3,5,20,.82);align-items:center;justify-content:center;padding:22px}
+  .modal.show{display:flex}
+  .letter{max-width:470px;width:100%;padding:34px 26px;border:1px solid rgba(223,201,255,.45);border-radius:22px;background:linear-gradient(145deg,#24204e,#101735);box-shadow:0 0 70px rgba(174,125,255,.22);text-align:center}
+  .letter h2{font-weight:normal;font-size:30px;margin:0 0 18px;color:#f1dfff}
+  .letter p{font-size:18px;line-height:1.75;color:#eeeaff}
+  .close{margin-top:12px;background:none;border:1px solid #aaa0d7;border-radius:30px;padding:10px 20px;color:white;cursor:pointer}
+  .final{margin-top:16px;font-size:13px;color:#c8b9f0}
+  @media(max-width:480px){.orbit{width:290px;height:290px}.planet{width:75px;height:75px}}
+</style>
+</head>
+<body>
+<canvas id="stars"></canvas><div class="nebula"></div>
+<main>
+  <div class="eyebrow">Un pequeño universo creado para</div>
+  <h1>Jess ✨</h1>
+  <p class="intro">Entre tantos millones de estrellas, si tuviera que elegir un lugar donde quedarme para siempre, elegiría estar a tu lado.</p>
+  <div class="hint">TOCA LAS ESTRELLAS Y DESCUBRE LO QUE GUARDAN</div>
+  <div class="orbit" aria-label="Estrellas interactivas">
+    <div class="planet"></div>
+    <button class="star s1" data-title="Mi lugar favorito" data-msg="No importa dónde estemos. Si estoy contigo, siento que estoy exactamente donde quiero estar.">✦</button>
+    <button class="star s2" data-title="Una de mis razones" data-msg="Tu forma de hacer que hasta un día normal se convierta en un recuerdo bonito.">✧</button>
+    <button class="star s3" data-title="Una promesa" data-msg="Quiero seguir aprendiendo a cuidarte, escucharte y construir momentos bonitos a tu lado.">✦</button>
+    <button class="star s4" data-title="Mi deseo" data-msg="Que nunca nos falten motivos para reír, abrazarnos fuerte y elegirnos una vez más.">✧</button>
+    <button class="star s5" data-title="Algo que quiero que sepas" data-msg="No hice este universo porque sea más grande que el real, sino porque quería regalarte un lugar donde cada estrella te recuerde cuánto significas para mí.">✦</button>
+  </div>
+  <button class="open" id="surprise">ABRIR MI ÚLTIMA SORPRESA ♥</button>
+  <div class="footer">Hecho con cariño, para ti. — De alguien que te elige.</div>
+</main>
+<div class="modal" id="modal">
+  <div class="letter">
+    <h2 id="modalTitle">Para mi amor</h2>
+    <p id="modalText">Jess, este pequeño universo es tuyo.</p>
+    <button class="close" id="close">Volver a las estrellas</button>
+    <div class="final">❤️ Siempre quiero descubrir nuevos mundos contigo.</div>
+  </div>
+</div>
+<script>
+const canvas=document.getElementById('stars'),ctx=canvas.getContext('2d');let dots=[];
+function resize(){canvas.width=innerWidth*devicePixelRatio;canvas.height=innerHeight*devicePixelRatio;ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);dots=Array.from({length:Math.min(220,Math.floor(innerWidth*innerHeight/5500))},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.5+.25,a:Math.random()*.7+.2,s:Math.random()*.012+.003}))}
+function draw(){ctx.clearRect(0,0,innerWidth,innerHeight);for(const d of dots){d.a+=Math.sin(Date.now()*d.s)*.003;ctx.fillStyle=`rgba(255,255,255,${Math.max(.15,Math.min(.9,d.a))})`;ctx.beginPath();ctx.arc(d.x,d.y,d.r,0,Math.PI*2);ctx.fill()}requestAnimationFrame(draw)}
+addEventListener('resize',resize);resize();draw();
+const modal=document.getElementById('modal'),title=document.getElementById('modalTitle'),msg=document.getElementById('modalText');
+document.querySelectorAll('.star').forEach(b=>b.addEventListener('click',()=>{title.textContent=b.dataset.title;msg.textContent=b.dataset.msg;modal.classList.add('show')}));
+document.getElementById('surprise').addEventListener('click',()=>{title.textContent='Para mi amor, Jess ❤️';msg.textContent='Gracias por ser parte de mi vida. No sé cuántas estrellas existen en el cielo, pero sí sé que quiero seguir creando recuerdos contigo. Este universo termina aquí; lo que deseo contigo, no.';modal.classList.add('show')});
+document.getElementById('close').addEventListener('click',()=>modal.classList.remove('show'));
+modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('show')});
+</script>
+</body>
+</html>
